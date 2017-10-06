@@ -1,0 +1,22 @@
+{
+  "name": "nafjs",
+  "version": "0.0.1",
+  "description": "Not Another Framework",
+  "main": "index.js",
+  "scripts": {
+    "dev":"webpack-dev-server --config webpack.config.dev.js --hot --content-base dev/",
+    "build":"webpack"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Denny Headrick",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
