@@ -1,22 +1,21 @@
 
+import render from './render'
 
-
-
-
-let el = document.getElementById('app');
-const myHTML = el.innerHTML;
-
-
-for(let key in app.data){
-  Object.defineProperty(app, key,{
+function createReactiveProperty(obj, prop, val){
+  let oldValue = val;
+  
+  Object.defineProperty(obj, prop,{
     get:function(){
-      return app.data[key];
+      return oldValue;
     },
-    set:function(val){
-      app.data[key];
-      render();
+    set:function(newVal){
+      if(newVal !== oldValue){
+        oldValue = newVal;
+      }
     }
-  }); 
+  });
+
+  
 }
 
 
@@ -34,13 +33,26 @@ for(let key in app.data){
 
 
 
+export default function Naf(options){
+    this.$el = {};
+    this.model = options.model || {};
+    this.init = function(){
+        
+        createReactiveProperty(this, '$el');
+        for(let key in this.model){
+          createReactiveProperty(this.model, key, this.model[key]);
+        }
+    };
 
-
-
-
-export default{
-
-    init:function(){
-        console.log('yolo');
-    }
+    this.mount=function(id){
+      const el = document.getElementById(id);
+      if(el){
+        this.$el = el;
+        this.render();
+        
+      }else{
+        console.warn('Element selector not valid');
+      }
+    };
+    this.render = render;
 }
