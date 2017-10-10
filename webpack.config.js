@@ -10,7 +10,7 @@ module.exports = {
       loaders:[{
         test:/\.js/,
         loader:'babel-loader',
-        exclude:/node_modules|dev/,
+        exclude:/node_modules|dev|build/,
         include:path.resolve(__dirname,'../src')
       }]
   }
