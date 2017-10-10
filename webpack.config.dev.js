@@ -1,4 +1,6 @@
 const path = require('path');
+const removeStrict = require('./build/removeStrict');
+
 
 module.exports = {
   entry: './dev/index.js',
@@ -7,8 +9,16 @@ module.exports = {
     filename: 'naf.js'
   },
   module:{
-      loaders:[{
-        test:/\.js/,
+      loaders:[
+        {
+          test:/\.js/,
+          loader:require.resolve('./build/removeStrict.js')
+        }  ,
+        
+        
+        {
+
+
         loader:'babel-loader',
         exclude:/node_modules|build/,
         include:path.resolve(__dirname,'../src'),
@@ -16,6 +26,8 @@ module.exports = {
           presets:['env']
         }
 
-      }]
+      }
+         
+    ]
   }
 };
