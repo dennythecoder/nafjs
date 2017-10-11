@@ -6,9 +6,9 @@ export default function(){
     let html = myHTML.replace(regex,function(match){
 
         const strippedMatch = match.replace('{{','').replace('}}','');
-
+        console.log(this.model);
         eval(
-        ` with(this){
+        ` with(this.model){
             return eval( strippedMatch );
         `);
       

@@ -1,6 +1,8 @@
-import naf from '../src/index.js';
+import Naf from '../dist/naf.common';
 
-let app = new naf({
+
+
+let app = new Naf({
     model:{
         msg:'Hello World'
     }
