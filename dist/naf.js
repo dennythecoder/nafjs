@@ -26,6 +26,7 @@ function createReactiveProperty(obj, prop, val){
       set:function(newVal){
         if(newVal !== oldValue){
           oldValue = newVal;
+          if(obj.render){obj.render();}
         }
       }
     });
