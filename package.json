@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev":"webpack-dev-server --config webpack.config.dev.js --hot --content-base dev/",
-    "build":"webpack"
+    "build":"webpack",
+    "rollup":"rollup ./src/index.js --o ./dist/naf.js --f iife --name Naf",
+    "rollup-common":"rollup ./src/index.js --o ./dist/naf.common.js --f cjs"
   },
   "keywords": [
     "javascript"
