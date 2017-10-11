@@ -11,14 +11,6 @@ module.exports = {
   module:{
       loaders:[
         {
-          test:/\.js/,
-          loader:require.resolve('./build/removeStrict.js')
-        }  ,
-        
-        
-        {
-
-
         loader:'babel-loader',
         exclude:/node_modules|build/,
         include:path.resolve(__dirname,'../src'),
