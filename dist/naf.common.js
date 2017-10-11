@@ -2,7 +2,6 @@
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 var render = function(){
-    
     if(!this.$el.innerHTML) return;
     const myHTML = this.$el.innerHTML;
     let model = this.model;
@@ -35,16 +34,13 @@ function createReactiveProperty(obj, prop, val){
 }
 
 var mount = function(id){
-
-    const el = document.getElementById(id);
+    const el = document.querySelector(id);
     if(el){
       this.$el = el;
       this.render();
-      
     }else{
       console.warn('Element selector not valid');
     }
-
 };
 
 function Naf(options){
