@@ -8,12 +8,9 @@ var render = function(){
     let html = myHTML.replace(regex,function(match){
 
         const strippedMatch = match.replace('{{','').replace('}}','');
-
-        eval(
-        ` with(this){
-            return eval( strippedMatch );
-        `);
-      
+        let result = '';
+        eval('with(model){result = eval( strippedMatch );}');
+        return result;
     });
 
     this.$el.innerHTML = html;
@@ -35,21 +32,6 @@ function createReactiveProperty(obj, prop, val){
 
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function Naf(options){
     this.$el = {};

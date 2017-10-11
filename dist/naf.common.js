@@ -1,5 +1,3 @@
-
-
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 var render = function(){
@@ -8,10 +6,7 @@ var render = function(){
 
         const strippedMatch = match.replace('{{','').replace('}}','');
         let result = '';
-        let model = this.model || {};
-        const code = 'with(model){result =  eval( strippedMatch );}';
-    
-        eval(code);
+        eval('with(model){result = eval( strippedMatch );}');
         return result;
     });
 
@@ -34,21 +29,6 @@ function createReactiveProperty(obj, prop, val){
 
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function Naf(options){
     this.$el = {};
