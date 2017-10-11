@@ -17,7 +17,7 @@ function removeStrict(filePath){
 }
 function grabDistPath(name){
  
-    return path.resolve('./dist/' + name + '.js');
+    return path.resolve(__dirname, '../dist/' + name + '.js');
 }
 
 const common = grabDistPath('naf.common');
