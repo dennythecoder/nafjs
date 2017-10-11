@@ -2,6 +2,7 @@
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 export default function(){
+    if(this.$el.innerHTML) return;
     const myHTML = this.$el.innerHTML;
     let model = this.model;
     let html = myHTML.replace(regex,function(match){
