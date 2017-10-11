@@ -9,7 +9,6 @@ let app = new Naf({
 });
 app.init();
 app.mount('app');
-console.log(app);
 
 
 

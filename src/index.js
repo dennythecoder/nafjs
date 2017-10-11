@@ -8,9 +8,9 @@ function Naf(options){
     let naf = {};
     this.$el = naf.$el = {};
     this.model = naf.model = options.model || {};
-    this.render = naf.render = render.bind(naf);
+    this.render = naf.render = render.bind(this);
     this.mount = naf.mount = mount;
-    
+
     this.init = naf.init = function(){
         createReactiveProperty(this, '$el');
       for(let key in this.model){
