@@ -1,5 +1,5 @@
 export default function(id){
-    const el = document.getElementById(id);
+    const el = document.querySelector(id);
     if(el){
       this.$el = el;
       this.render();
