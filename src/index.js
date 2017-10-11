@@ -18,22 +18,7 @@ function createReactiveProperty(obj, prop, val){
   
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default function Naf(options){
+function Naf(options){
     this.$el = {};
     this.model = options.model || {};
     this.init = function(){
@@ -56,3 +41,6 @@ export default function Naf(options){
     };
     this.render = render;
 }
+
+
+export default Naf;
