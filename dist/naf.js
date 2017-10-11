@@ -4,6 +4,7 @@ const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 var render = function(){
     const myHTML = this.$el.innerHTML;
+    console.log(this);
     let html = myHTML.replace(regex,function(match){
 
         const strippedMatch = match.replace('{{','').replace('}}','');
@@ -16,33 +17,31 @@ var render = function(){
 };
 
 function createReactiveProperty(obj, prop, val){
-  let oldValue = val;
-  
-  Object.defineProperty(obj, prop,{
-    get:function(){
-      return oldValue;
-    },
-    set:function(newVal){
-      if(newVal !== oldValue){
-        oldValue = newVal;
+    let oldValue = val;
+    
+    Object.defineProperty(obj, prop,{
+      get:function(){
+        return oldValue;
+      },
+      set:function(newVal){
+        if(newVal !== oldValue){
+          oldValue = newVal;
+        }
       }
-    }
-  });
-
-  
+    });
 }
 
 function Naf(options){
     let naf = {};
     this.$el = naf.$el = {};
     this.model = naf.model = options.model || {};
-    this.render = naf.render = render;
-    
+    this.render = naf.render = render.bind(naf);
+
     this.init = naf.init = function(){
         createReactiveProperty(this, '$el');
-        for(let key in this.model){
-          createReactiveProperty(this.model, key, this.model[key]);
-        }
+      for(let key in this.model){
+        createReactiveProperty(this.model, key, this.model[key]);
+      }
     };
 
     this.mount=function(id){
