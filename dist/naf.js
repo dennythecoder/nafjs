@@ -3,8 +3,8 @@ var Naf = (function () {
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 var render = function(){
+    if(!this.$el.innerHTML) return;
     const myHTML = this.$el.innerHTML;
-    console.log(this);
     let html = myHTML.replace(regex,function(match){
 
         const strippedMatch = match.replace('{{','').replace('}}','');
@@ -31,12 +31,26 @@ function createReactiveProperty(obj, prop, val){
     });
 }
 
+var mount = function(id){
+
+    const el = document.getElementById(id);
+    if(el){
+      this.$el = el;
+      this.render();
+      
+    }else{
+      console.warn('Element selector not valid');
+    }
+
+};
+
 function Naf(options){
     let naf = {};
     this.$el = naf.$el = {};
     this.model = naf.model = options.model || {};
     this.render = naf.render = render.bind(naf);
-
+    this.mount = naf.mount = mount;
+    
     this.init = naf.init = function(){
         createReactiveProperty(this, '$el');
       for(let key in this.model){
@@ -44,16 +58,6 @@ function Naf(options){
       }
     };
 
-    this.mount=function(id){
-      const el = document.getElementById(id);
-      if(el){
-        this.$el = el;
-        this.render();
-        
-      }else{
-        console.warn('Element selector not valid');
-      }
-    };
     
 }
 
