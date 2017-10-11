@@ -1,5 +1,4 @@
 var Naf = (function () {
-'use strict';
 
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 

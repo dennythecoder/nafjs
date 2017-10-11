@@ -1,3 +1,4 @@
+
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 var render = function(){
