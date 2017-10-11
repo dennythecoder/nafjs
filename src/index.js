@@ -11,9 +11,9 @@ function Naf(options){
 
     this.init = naf.init = function(){
         createReactiveProperty(this, '$el');
-        for(let key in this.model){
-          createReactiveProperty(this.model, key, this.model[key]);
-        }
+      for(let key in this.model){
+        createReactiveProperty(this.model, key, this.model[key]);
+      }
     };
 
     this.mount=function(id){
