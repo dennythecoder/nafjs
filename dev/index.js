@@ -7,3 +7,11 @@ let app = new Naf({
 });
 app.init();
 app.mount('#app');
+
+let app2 = new Naf({
+    model:{
+        msg:'What is going on?'
+    }
+});
+app2.init();
+app2.mount('#app2');
