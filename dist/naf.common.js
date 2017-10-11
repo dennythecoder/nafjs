@@ -32,10 +32,12 @@ function createReactiveProperty(obj, prop, val){
 }
 
 function Naf(options){
-    this.$el = {};
-    this.model = options.model || {};
-    this.init = function(){
-        
+    let naf = {};
+    this.$el = naf.$el = {};
+    this.model = naf.model = options.model || {};
+    this.render = naf.render = render;
+    
+    this.init = naf.init = function(){
         createReactiveProperty(this, '$el');
         for(let key in this.model){
           createReactiveProperty(this.model, key, this.model[key]);
@@ -52,7 +54,7 @@ function Naf(options){
         console.warn('Element selector not valid');
       }
     };
-    this.render = render;
+    
 }
 
 module.exports = Naf;
