@@ -11,13 +11,10 @@ function Naf(options){
     this.render = naf.render = render.bind(this);
     this.mount = naf.mount = mount;
 
-    this.init = naf.init = function(){
-        createReactiveProperty(this, '$el');
-      for(let key in this.model){
-        createReactiveProperty(this.model, key, this.model[key]);
-      }
-    };
-
+    createReactiveProperty(naf, '$el');
+    for(let key in naf.model){
+      createReactiveProperty(naf.model, key, naf.model[key]);
+    }
     
 }
 
