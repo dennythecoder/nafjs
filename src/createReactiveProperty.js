@@ -1,15 +1,20 @@
-export default function createReactiveProperty(obj, prop, val){
-    let oldValue = val;
-    
-    Object.defineProperty(obj, prop,{
-      get:function(){
-        return oldValue;
+export default function createReactiveProperty(obj, prop){
+
+    let handler = {
+      get:function(obj, prop){
+        return obj[prop];
       },
-      set:function(newVal){
-        if(newVal !== oldValue){
-          oldValue = newVal;
-          if(obj.render){obj.render();}
+      set:function(obj, prop, val){
+        if(obj[prop] !== val){
+          obj[prop] = val;
+          if(obj.render) {obj.render();}
+        }else{
+
         }
+        return true;
       }
-    });
+    }
+    
+
+
 }

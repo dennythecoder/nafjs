@@ -1,11 +1,19 @@
 
+//prevent tree shaking
+var preserve = function(arg){
+    if(arg){
+        let context = window || global;
+        context[Symbol()] = arg;
+    }
+};
+
 const regex = /\{\{((?:.|\n)+?)\}\}/g;
 
 var render = function(){
     if(!this.$el.innerHTML) return;
     const myHTML = this.$el.innerHTML;
     let model = this.model;
-    if(console){console.log(model);} //prevent tree shaking
+    preserve(model);
     let html = myHTML.replace(regex,function(match){
 
         const strippedMatch = match.replace('{{','').replace('}}','');
@@ -16,22 +24,6 @@ var render = function(){
 
     this.$el.innerHTML = html;
 };
-
-function createReactiveProperty(obj, prop, val){
-    let oldValue = val;
-    
-    Object.defineProperty(obj, prop,{
-      get:function(){
-        return oldValue;
-      },
-      set:function(newVal){
-        if(newVal !== oldValue){
-          oldValue = newVal;
-          if(obj.render){obj.render();}
-        }
-      }
-    });
-}
 
 var mount = function(id){
     const el = document.querySelector(id);
@@ -50,10 +42,7 @@ function Naf(options){
     this.render = naf.render = render.bind(this);
     this.mount = naf.mount = mount;
 
-    createReactiveProperty(naf, '$el');
-    for(let key in naf.model){
-      createReactiveProperty(naf.model, key, naf.model[key]);
-    }
+    
     
 }
 
