@@ -14,7 +14,7 @@ export default function createReactiveProperty(obj, prop){
         return true;
       }
     }
-    
+    obj[prop] = new Proxy(obj[prop], handler);
 
 
 }
